@@ -160,6 +160,13 @@ public interface RSearchReactive {
     Mono<Void> delAlias(String alias);
 
     /**
+     * Returns all index aliases
+     *
+     * @return aliases
+     */
+    Mono<List<String>> listAliases();
+
+    /**
      * Adds alias to defined index name.
      * Re-assigns the alias if it was used before with a different index.
      *

@@ -920,6 +920,16 @@ public class RedissonSearch implements RSearch {
     }
 
     @Override
+    public List<String> listAliases() {
+        return commandExecutor.get(listAliasesAsync());
+    }
+
+    @Override
+    public RFuture<List<String>> listAliasesAsync() {
+        return commandExecutor.readAsync((String) null, StringCodec.INSTANCE, RedisCommands.FT_ALIASLIST);
+    }
+
+    @Override
     public void updateAlias(String alias, String indexName) {
         commandExecutor.get(updateAliasAsync(alias, indexName));
     }

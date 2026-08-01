@@ -640,6 +640,19 @@ public class RedissonSearchTest extends RedisDockerTest {
     }
 
     @Test
+    public void testAliasList() {
+        RSearch s = redisson.getSearch(StringCodec.INSTANCE);
+        s.createIndex("alias-list-idx", IndexOptions.defaults()
+                        .on(IndexType.HASH)
+                        .prefix(Collections.singletonList("alias-list:")),
+                FieldIndex.text("t"));
+
+        s.addAlias("alias-list-name", "alias-list-idx");
+
+        assertThat(s.listAliases()).contains("alias-list-name");
+    }
+
+    @Test
     public void testSpellcheck() {
         RSearch s = redisson.getSearch();
 

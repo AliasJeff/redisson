@@ -141,6 +141,13 @@ public interface RSearchAsync {
     RFuture<Void> delAliasAsync(String alias);
 
     /**
+     * Returns all index aliases
+     *
+     * @return aliases
+     */
+    RFuture<List<String>> listAliasesAsync();
+
+    /**
      * Adds alias to defined index name.
      * Re-assigns the alias if it was used before with a different index.
      *
